@@ -18,15 +18,19 @@ char* cjson_prirnt(const cjson* root);
 char* cjson_prirnt_unformatted(const cjson* root);
 void  cjson_free(const char* root_string);
 
-bool cjson_to_bool(const cjson* obj);
-int32_t cjson_to_i32(const cjson* obj);
-uint32_t cjson_to_u32(const cjson* obj);
-double cjson_to_double(const cjson* obj);
-char* cjson_to_string(const cjson* obj);
-void cjson_to_string_copy(const cjson* obj, char* buffer, int32_t size);
+cjson* cjson_parse_item(const cjson* from_item, const char* item_name);
 
-int32_t cjson_array_size(const cjson* array);
-cjson* cjson_to_array(const cjson* array, int32_t index);
+bool cjson_parse_bool(const cjson* from_item, const char* item_name);
+int32_t cjson_parse_i32(const cjson* from_item, const char* item_name);
+uint32_t cjson_parse_u32(const cjson* from_item, const char* item_name);
+double cjson_parse_double(const cjson* from_item, const char* item_name);
+char* cjson_parse_string(const cjson* from_item, const char* item_name);
+void cjson_parse_string_copy(const cjson* from_item, const char* item_name, char* buffer, int32_t size);
+
+cjson* cjson_parse_array(const cjson* from_item, const char* item_name);
+int32_t cjson_parse_array_size(const cjson* from_item);
+cjson* cjson_parse_array_item(const cjson* from_item, int32_t index);
+
 
 
 #ifdef __cplusplus
