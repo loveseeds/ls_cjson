@@ -51,7 +51,7 @@ void test_cjson_parse(const char* json_string)
     printf("is_success : %d\n", cjson_parse_bool(root, "is_success"));
     printf("user_id : %d\n", cjson_parse_i32(root, "user_id"));
     printf("user_type : %d\n", cjson_parse_u32(root, "user_type"));
-    printf("money : %d\n", cjson_parse_double(root, "money"));
+    printf("money : %.2f\n", cjson_parse_double(root, "money"));
     printf("name :  %s\n", cjson_parse_string(root, "name"));
 
     cjson_item data = cjson_parse_item(root, "data");
