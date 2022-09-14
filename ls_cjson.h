@@ -44,7 +44,7 @@ bool cjson_add_i32(cjson_item to_item, const char* key, int32_t value);
 bool cjson_add_u32(cjson_item to_item, const char* key, uint32_t value);
 bool cjson_add_double(cjson_item to_item, const char* key, double value);
 bool cjson_add_string(cjson_item to_item, const char* key, const char* value);
-bool cjson_add_item(cjson_item to_item, const char* key, cjson_item value);
+bool cjson_add_to_item(cjson_item to_item, const char* key, cjson_item value);
 bool cjson_add_i32_array(cjson_item to_item, const char* key, const int32_t *buffer, int32_t length);
 bool cjson_add_double_array(cjson_item to_item, const char* key, const double *buffer, int32_t length);
 bool cjson_add_string_array(cjson_item to_item, const char* key, const char* * buffer, int32_t length);

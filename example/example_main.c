@@ -1,4 +1,4 @@
-#include "ls_cjson.h"
+#include "../ls_cjson.h"
 #include <stdio.h>
 
 char* test_cjson_create(void)
@@ -13,7 +13,7 @@ char* test_cjson_create(void)
 
     cjson_item data = cjson_create_item();
     cjson_add_u32(data, "timestamp", 1663079164);
-    cjson_add_item(root, "data", data);
+    cjson_add_to_item(root, "data", data);
 
     cjson_array array = cjson_create_array();
     cjson_item element1 = cjson_create_item();

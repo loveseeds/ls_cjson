@@ -307,7 +307,7 @@ bool cjson_add_string(cjson_item to_item, const char* key, const char* value)
     return cJSON_AddStringToObject(to_item, key, value) != NULL ? true : false;
 }
 
-bool cjson_add_item(cjson_item to_item, const char* key, cjson_item value)
+bool cjson_add_to_item(cjson_item to_item, const char* key, cjson_item value)
 {
     return cJSON_AddItemToObject(to_item, key, value) ? true : false;
 }
@@ -316,21 +316,21 @@ bool cjson_add_i32_array(cjson_item to_item, const char* key, const int32_t *buf
 {
     cjson_item array = cJSON_CreateIntArray(buffer, length);
 
-    return cjson_add_item(to_item, key, array);
+    return cjson_add_to_item(to_item, key, array);
 }
 
 bool cjson_add_double_array(cjson_item to_item, const char* key, const double *buffer, int32_t length)
 {
     cjson_item array = cJSON_CreateDoubleArray(buffer, length);
 
-    return cjson_add_item(to_item, key, array);
+    return cjson_add_to_item(to_item, key, array);
 }
 
 bool cjson_add_string_array(cjson_item to_item, const char* key, const char* * buffer, int32_t length)
 {
     cjson_item array = cJSON_CreateStringArray(buffer, length);
 
-    return cjson_add_item(to_item, key, array);
+    return cjson_add_to_item(to_item, key, array);
 }
 
 bool cjson_add_to_array(cjson_array to_item, const cjson_item item)
@@ -342,5 +342,5 @@ bool cjson_add_to_array(cjson_array to_item, const cjson_item item)
 
 bool cjson_add_item_array(cjson_item to_item, const char* key, cjson_array value)
 {
-    return cjson_add_item(to_item, key, value);
+    return cjson_add_to_item(to_item, key, value);
 }
