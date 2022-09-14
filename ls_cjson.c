@@ -31,7 +31,7 @@ char* cjson_print_unformatted(const cjson_item root)
     return cJSON_PrintUnformatted(root);
 }
 
-void cjson_free(const char* root_string)
+void cjson_free(char* root_string)
 {
     if(root_string != NULL)
     {
@@ -203,23 +203,53 @@ char* cjson_parse_string(const cjson_item from_item, const char* item_name)
     return cjson_to_string(item);
 }
 
-void cjson_parse_string_copy(const cjson_item from_item, const char* item_name, char* buffer, int32_t size)
+void cjson_parse_string_copy(const cjson_item from_item, const char* item_name, char* buffer, int32_t buffer_size)
 {
     cjson_item item = cjson_parse_item(from_item, item_name);
-    cjson_to_string_copy(item, buffer, size);
+    cjson_to_string_copy(item, buffer, buffer_size);
 }
 
-cjson_item cjson_parse_array(const cjson_item from_item, const char* item_name)
+cjson_array cjson_parse_array(const cjson_item from_item, const char* item_name)
 {
     return cjson_parse_item(from_item, item_name);
 }
 
-int32_t cjson_parse_array_size(const cjson_item from_item)
+int32_t cjson_parse_array_size(const cjson_array from_item)
 {
     return cjson_array_size(from_item);
 }
 
-cjson_item cjson_parse_array_item(const cjson_item from_item, int32_t index)
+bool cjson_parse_array_bool(const cjson_array from_item, int32_t index)
+{
+    cjson_item array_item = cjson_to_array(from_item, index);
+    return cjson_to_bool(array_item);
+}
+
+int32_t cjson_parse_array_i32(const cjson_array from_item, int32_t index)
+{
+    cjson_item array_item = cjson_to_array(from_item, index);
+    return cjson_to_i32(array_item);
+}
+
+double cjson_parse_array_double(const cjson_array from_item, int32_t index)
+{
+    cjson_item array_item = cjson_to_array(from_item, index);
+    return cjson_to_double(array_item);
+}
+
+char* cjson_parse_array_string(const cjson_array from_item, int32_t index)
+{
+    cjson_item array_item = cjson_to_array(from_item, index);
+    return cjson_to_string(array_item);
+}
+
+void cjson_parse_array_string_copy(const cjson_array from_item, int32_t index, char *buffer, int32_t buffer_size)
+{
+    cjson_item array_item = cjson_to_array(from_item, index);
+    cjson_to_string_copy(array_item, buffer, buffer_size);
+}
+
+cjson_item cjson_parse_array_item(const cjson_array from_item, int32_t index)
 {
     return cjson_to_array(from_item, index);
 }
@@ -237,7 +267,7 @@ cjson_item cjson_create_item(void)
     return cJSON_CreateObject();
 }
 
-cjson_item cjson_create_array(void)
+cjson_array cjson_create_array(void)
 {
     return cJSON_CreateArray();
 }
@@ -303,14 +333,14 @@ bool cjson_add_string_array(cjson_item to_item, const char* key, const char* * b
     return cjson_add_item(to_item, key, array);
 }
 
-bool cjson_add_array(cjson_item to_item, const cjson_item item)
+bool cjson_add_to_array(cjson_array to_item, const cjson_item item)
 {
     if(!cJSON_IsArray(to_item)) { return false; }
 
     return cJSON_AddItemToArray(to_item, item) ? true : false;
 }
 
-bool cjson_add_item_array(cjson_item to_item, const char* key, cjson_item value)
+bool cjson_add_item_array(cjson_item to_item, const char* key, cjson_array value)
 {
     return cjson_add_item(to_item, key, value);
 }
