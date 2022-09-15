@@ -50,6 +50,7 @@ bool cjson_add_double_array(cjson_item to_item, const char* key, const double *b
 bool cjson_add_string_array(cjson_item to_item, const char* key, const char* * buffer, int32_t length);
 bool cjson_add_to_array(cjson_array to_item, const cjson_item item);
 bool cjson_add_item_array(cjson_item to_item, const char* key, cjson_array value);
+bool cjson_add_muti_item(cjson_item to_item, const char* key, const cjson_item* item_buffer, int32_t item_number);
 
 #ifdef __cplusplus
 }

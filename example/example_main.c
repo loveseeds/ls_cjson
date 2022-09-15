@@ -29,6 +29,10 @@ char* test_cjson_create(void)
 
     cjson_add_item_array(root, "rule_list", array);
 
+    cjson_item element3 = NULL; // dummy item
+    cjson_item muti_item[2] = { element1, element2, element3 };
+    cjson_add_muti_item(root, "rule_list_1", muti_item, sizeof(muti_item) / sizeof(muti_item[0]));
+
     const char* verify_type[] = { "qrcode", "card", "password" };
     cjson_add_string_array(root, "verify_type", verify_type, sizeof(verify_type)/sizeof(verify_type[0]));
 

@@ -344,3 +344,13 @@ bool cjson_add_item_array(cjson_item to_item, const char* key, cjson_array value
 {
     return cjson_add_to_item(to_item, key, value);
 }
+
+bool cjson_add_muti_item(cjson_item to_item, const char* key, const cjson_item* item_buffer, int32_t item_number)
+{
+    cjson_array array = cjson_create_array();
+    for(int32_t i=0; i<item_number; i++)
+    {
+        cjson_add_to_array(array, item_buffer[i]);
+    }
+    return cjson_add_to_item(to_item, key, array);
+}
